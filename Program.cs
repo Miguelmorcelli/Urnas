@@ -1,46 +1,50 @@
-﻿
-        int votos, brancos, nulos;
-        int candidatoA, candidatoB;
+﻿// Validação de percentuais de uma eleição
+// Criação e inicialização das variáveis
+int votos, brancos, nulos = 0;
+int candidatoA, candidatoB = 0;
+double total = 0;
 
-        Console.WriteLine("*** Apuração de votos do município ***");
+// Solicitação de dados do usuário
+System.Console.WriteLine("*** Apuração de votos do município ***"); ;
+System.Console.Write("Informe a quantidade de votos válidos: ");
+votos = Convert.ToInt32(Console.ReadLine());
 
-        Console.Write("Informe a quantidade de votos válidos: ");
-        votos = int.Parse(Console.ReadLine());
+    Console.WriteLine("Total de votos do candidato A: ");
+    candidatoA = Convert.ToInt16(Console.ReadLine());
 
-        Console.Write("Total de votos do candidato A: ");
-        candidatoA = int.Parse(Console.ReadLine());
+    Console.WriteLine("Agora, o total de votos do candidato B: ");
+    candidatoB = Convert.ToInt16(Console.ReadLine());
 
-        Console.Write("Total de votos do candidato B: ");
-        candidatoB = int.Parse(Console.ReadLine());
 
-        Console.Write("Informe o total de votos em branco: ");
-        brancos = int.Parse(Console.ReadLine());
 
-        Console.Write("Informe o total de votos nulos: ");
-        nulos = int.Parse(Console.ReadLine());
+Console.Write("Informe o total de votos em branco: ");
+brancos = Convert.ToInt32(Console.ReadLine());
 
-        
+Console.Write("Informe o total de votos nulos: ");
+nulos = Convert.ToInt32(Console.ReadLine());
 
-        Console.WriteLine($"\nTotal de {votos} votos válidos");
-        Console.WriteLine($"{brancos} votos em branco e {nulos} votos nulos");
+double PercA = (double) candidatoA / votos * 100;
+double PercB = (double) candidatoB / votos * 100;
+double nulo = (double) nulos / votos * 100;
+double branco = (double) brancos / votos * 100;
 
-        Console.WriteLine($"\nPercentual do candidato A: {percA:F2}%");
-        Console.WriteLine($"Percentual do candidato B: {percB:F2}%");
-     
+if (PercA > 50)
+{
 
-        // Convertendo para double para evitar divisão inteira
-        double percA = (double)candidatoA / votos * 100;
-        double percB = (double)candidatoB / votos * 100;
-        double nulo = (double)nulos / votos * 100;
-        double branco = (double)brancos / votos * 100;
-        
-        if (PercA > 50)
-        {
-            total = (double)PercA + nulo + branco;
-        }
-        else
-        {
-            total = (double)percB + nulo + branco;
-        }
+     total = (double) PercA + nulo + branco;
 
-        Console.WriteLine("")
+}
+else 
+{
+
+     total = (double) PercB + nulo + branco;    
+
+}
+
+System.Console.WriteLine("Total de votos válidos: " +votos+ "\n" +
+                         "Total de votos nulos: " +nulos+ "\n "+
+                         "Total de votos em branco: " +brancos+ "\n" +
+                         "Porcentagem candidato A: " +PercA+ "%" + "\n"+
+                         "Porcentagem candidato B: " +PercB+ "%");
+
+ Console.WriteLine($"O candidato vencedor teve {total} %");
